@@ -1,46 +1,43 @@
-import { Button } from "reactstrap";
-import styles from "../pages/ExplorerPage.module.css";
+import { Navbar, NavbarBrand, Button, Input } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+import styles from "../pages/ExplorerPage.module.css";
 import logo from "../assets/images/logo.png";
 
 export default function ExplorerTopBar({ selectedCell, setSelectedCell }) {
     const navigate = useNavigate();
 
     return (
-        <div className={styles.topBar}>
-            <img src={logo} style={{ width: 38, height: 38 }} alt="logo" />
+        <Navbar className={styles.explorerTopBar} expand="md">
+            {/* LEFT — Logo */}
+            <NavbarBrand
+                onClick={() => navigate("/")}
+                style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+            >
+                <img src={logo} alt="logo" className={styles.topbarLogo} />
+            </NavbarBrand>
 
-            {/* Center Dropdown */}
-            <div className={styles.cellDropdownWrapper}>
-                <select
-                    className="form-select"
-                    style={{
-                        width: 240,
-                        background: "#DDDCDC",
-                        borderRadius: 17,
-                        border: "none",
-                    }}
+            {/* CENTER — Cell Type Dropdown */}
+            <div className="mx-auto">
+                <Input
+                    type="select"
+                    className={styles.topbarDropdown}
                     value={selectedCell}
                     onChange={(e) => setSelectedCell(e.target.value)}
                 >
-                    <option>-- Select Cell Type --</option>
+                    <option value="">-- Select Cell Type --</option>
                     <option value="H1-hESC">H1-hESC</option>
-                    <option value="GM12878">GM12878 (Lymphoblastoid)</option>
-                    <option value="IMR-90">IMR-90 Fibroblast</option>
-                    <option value="K562">K562 (Myelogenous Leukemia)</option>
+                    <option value="GM12878">GM12878</option>
+                    <option value="IMR90">IMR-90</option>
+                    <option value="K562">K562</option>
                     <option value="mESC">Mouse ESC</option>
-                </select>
+                </Input>
             </div>
 
-            {/* Right Buttons */}
-            <div className={styles.topBarBtns}>
-                <Button color="light" onClick={() => navigate(-1)}>
-                    Go Back
-                </Button>
-                <Button color="light" onClick={() => navigate("/signup")}>
-                    Sign Up
-                </Button>
+            {/* RIGHT — Buttons */}
+            <div className={styles.topbarRight}>
+                <Button color="light" onClick={() => navigate(-1)}>Go Back</Button>
+                <Button color="light" onClick={() => navigate("/signup")}>Sign Up</Button>
             </div>
-        </div>
+        </Navbar>
     );
 }

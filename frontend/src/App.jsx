@@ -18,13 +18,17 @@ export default function App() {
 function AppContent() {
   const location = useLocation();
 
+  // Pages that DO NOT show the navbar
+  const hideNavbarOn = ["/explorer"];
+  const shouldShowNavbar = !hideNavbarOn.includes(location.pathname);
+
   // Pages that DO NOT show the footer
   const hideFooterOn = ["/login", "/signup", "/explorer"];
   const shouldShowFooter = !hideFooterOn.includes(location.pathname);
 
   return (
     <>
-      <Navbar />
+      {shouldShowNavbar && <Navbar />}
 
       <Routes>
         <Route path="/" element={<SplashPage />} />
