@@ -7,6 +7,7 @@ import styles from "./ExplorerPage.module.css";
 import ExplorerTopBar from "../components/ExplorerTopBar";
 import ExplorerLevelControls from "../components/ExplorerLevelControls";
 import GenomeScene from "../components/GenomeScene";
+import Starfield from "../components/Startfield";
 
 export default function ExplorerPage() {
     const [level, setLevel] = useState(1);
@@ -29,6 +30,7 @@ export default function ExplorerPage() {
                     <ambientLight intensity={0.3} />
                     <pointLight position={[10, 10, 10]} />
                     <OrbitControls enablePan enableRotate enableZoom />
+                    <Starfield />
 
                     {/*  */}
                     <GenomeScene level={level} onSelect={setSelectedObject} />
